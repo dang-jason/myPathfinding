@@ -17,7 +17,20 @@
 .functions{
     height: 20%;
     width: 100%;
-} 
+    text-align: center;
+}
+
+.functions > h1{
+    font-family: monospace;
+    font-size: 48px;
+}
+
+.functions > button{
+    border-radius: 18%;
+    background-color: rgb(131, 190, 190);
+    font-size: 16px;
+    padding: 5px 20px;
+}
 
 .grid-container{
     height: 80%;
