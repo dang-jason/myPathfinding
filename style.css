@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html{
+    background-color: lightslategrey;
+}
+
 .pathfindingVisualizer {
     position: absolute;
     width: 100%;
@@ -26,10 +30,15 @@
 }
 
 .functions > button{
-    border-radius: 18%;
-    background-color: rgb(131, 190, 190);
+    text-align: center;
+    font-family: monospace;
     font-size: 16px;
-    padding: 5px 20px;
+    font-weight: bold;
+    margin: 20px;
+    border-radius: 50%;
+    background-color: rgb(202, 142, 51);
+    width: 100px;
+    height: 40px;
 }
 
 .grid-container{
@@ -60,8 +69,39 @@
     display:inline-block;
 }
 
-[isWall$="true"] {
-    background-color: rgb(131, 190, 190);
+.node:hover:not(.node-start):not(.node-finish):not([isWall$="true"]){
+    animation-name: hoverAnimation;
+    animation-timing-function: ease;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes hoverAnimation {
+    0% {
+        background-color: rgb(202, 142, 51);
+        transform: scale(.7);
+        border-radius: 100%;
+        outline: 1px solid rgb(175, 216, 248);
+    }
+    25% {
+        background-color: rgb(202, 142, 51);
+        outline: 1px solid rgb(175, 216, 248);
+    }
+    50% {
+        background-color: rgb(202, 142, 51);
+        transform: scale(1.2);
+        outline: 1px solid rgb(175, 216, 248);
+    }
+    100%{
+        background-color: rgb(202, 142, 51);
+        transform: scale(1);
+        outline: 1px solid rgb(175, 216, 248);
+    }
+
+}
+
+.isWall {
+    background-color: rgb(202, 142, 51);
 }
 
 .node-start {

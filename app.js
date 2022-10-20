@@ -1,4 +1,4 @@
-import {solveBFS} from './algorithms/bfs';
+//import bfs from './algorithms/bfs';
 
 const TOTAL_ROWS = 20;
 const TOTAL_COLS = 50;
@@ -9,26 +9,19 @@ const FINISH_NODE_COL = 40;
 
 const createNode = (col, row) => {
     const node = document.createElement('div');
-    node.className = 'node ';
+    node.classList.add('node');
     node.id = `node-${row}-${col}`;
-    node.setAttribute('isWall', false);
-    node.setAttribute('isStart', col === START_NODE_COL && row === START_NODE_ROW);
-    node.setAttribute('isFinish', col === FINISH_NODE_COL && row === FINISH_NODE_ROW);
-    const extraClassName = node.getAttribute('isFinish') == "true"
-        ? 'node-finish'
-        : node.getAttribute('isStart') == "true"
-        ? 'node-start'
-        : node.getAttribute('isWall') == "true"
-        ? 'node-wall'
-        : '';
-    if(!((node.getAttribute('isStart') == "true") || (node.getAttribute('isFinish') == "true"))){
+    col === START_NODE_COL && row === START_NODE_ROW
+        ? node.classList.add('node-start')
+        : col === FINISH_NODE_COL && row === FINISH_NODE_ROW
+        ? node.classList.add('node-finish')
+        : ""
+    if(!((node.classList.contains('isStart') || node.classList.contains('isFinish')))){
         node.addEventListener('mousedown', () => {
-            node.setAttribute('isWall', node.getAttribute('isWall') != "true");
+            node.classList.toggle('isWall');
         })
     }
-    node.className += extraClassName;
     return node;
-    
 }
 
 //setting up the grid
@@ -44,6 +37,11 @@ const getInitialGrid = (() => {
     }
 })();
 
+function solveBFS(){
+    let grid = [];
+
+}
+
 function reset(){
-    return;
+
 }
