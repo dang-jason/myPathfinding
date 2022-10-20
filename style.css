@@ -60,6 +60,10 @@
     display:inline-block;
 }
 
+[isWall$="true"] {
+    background-color: rgb(131, 190, 190);
+}
+
 .node-start {
     background-color: green;
 }
