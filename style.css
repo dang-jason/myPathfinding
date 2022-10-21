@@ -36,9 +36,12 @@ html{
     font-weight: bold;
     margin: 20px;
     border-radius: 50%;
-    background-color: rgb(202, 142, 51);
     width: 100px;
     height: 40px;
+}
+
+.functions > button:hover{
+    background-color: rgb(202, 142, 51);
 }
 
 .grid-container{
@@ -69,35 +72,9 @@ html{
     display:inline-block;
 }
 
-.node:hover:not(.node-start):not(.node-finish):not([isWall$="true"]){
-    animation-name: hoverAnimation;
-    animation-timing-function: ease;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-}
-
-@keyframes hoverAnimation {
-    0% {
-        background-color: rgb(202, 142, 51);
-        transform: scale(.7);
-        border-radius: 100%;
-        outline: 1px solid rgb(175, 216, 248);
-    }
-    25% {
-        background-color: rgb(202, 142, 51);
-        outline: 1px solid rgb(175, 216, 248);
-    }
-    50% {
-        background-color: rgb(202, 142, 51);
-        transform: scale(1.2);
-        outline: 1px solid rgb(175, 216, 248);
-    }
-    100%{
-        background-color: rgb(202, 142, 51);
-        transform: scale(1);
-        outline: 1px solid rgb(175, 216, 248);
-    }
-
+.node:hover:not(.node-start):not(.node-finish):not(.isWall){
+    background-color: rgb(202, 142, 51);
+    transform: scale(.8);
 }
 
 .isWall {
@@ -110,4 +87,39 @@ html{
 
 .node-finish {
     background-color: red;
+}
+
+.node-visited{
+    animation-name: visitedAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes visitedAnimation {
+    0% {
+        background-color: teal;
+        transform: scale(.3);
+        border-radius: 100%;
+        outline: 1px solid rgb(175, 216, 248);
+    }
+    25% {
+        background-color: teal;
+        outline: 1px solid rgb(175, 216, 248);
+    }
+    50% {
+        background-color: teal;
+        transform: scale(1.2);
+        outline: 1px solid rgb(175, 216, 248);
+    }
+    100%{
+        background-color: teal;
+        transform: scale(1);
+        outline: 1px solid rgb(175, 216, 248);
+    }
+
 }
