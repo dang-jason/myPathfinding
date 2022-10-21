@@ -41,19 +41,20 @@ function solveBFS(){
     document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.add('node-visited');
     let queue = [[START_NODE_ROW, START_NODE_COL]];
     let visited = [];
-    for(var i = 0; i<TOTAL_ROWS; i++) visited[i] = new Array(TOTAL_COLS).fill(false);
+    for(let i = 0; i<TOTAL_ROWS; i++) visited[i] = new Array(TOTAL_COLS).fill(false);
+    visited[START_NODE_ROW][START_NODE_COL]
     let possibleMoves = [
         [-1,0],
         [1,0],
         [0,-1],
         [0,1]
     ];
-    times = 0;
+    let s = 0
+
     while(queue.length){
         let pos = queue.shift();
         let r = pos[0];
         let c = pos[1];
-        visited.push([r,c])
         let node = document.getElementById(`node-${r}-${c}`);
         if (node.classList.contains('node-finish'))
             break;
@@ -63,20 +64,19 @@ function solveBFS(){
             let dy = possibleMoves[i][0]
             let nRow = r+dy;
             let nCol = c+dx;
-
-            if (nRow < 0 || nRow >= TOTAL_ROWS || nCol < 0 || nCol >= TOTAL_COLS){
+            if (nRow < 0 || nRow >= TOTAL_ROWS || nCol < 0 || nCol >= TOTAL_COLS || visited[nRow][nCol]){
                 continue;
             }
-
+            visited[nRow][nCol] = true;
             let nNode = document.getElementById(`node-${nRow}-${nCol}`);
             if(!(nNode.classList.contains('node-visited') || nNode.classList.contains('isWall'))){
-                nNode.classList.add('node-visited');
+                s++;
                 queue.push([nRow, nCol]);
+                setTimeout(() => {
+                    nNode.classList.add('node-visited');
+                }, 10*s)
             }
-
         }
-
-
     }
 
 
@@ -84,12 +84,13 @@ function solveBFS(){
 }
 
 function reset(){
-    let nodeList = document.querySelectorAll('.isWall');
-    for (let j=0; j<nodeList.length; j++){
-        nodeList[j].classList.toggle('isWall');
-    }
-    nodeList = document.querySelectorAll('.node-visited');
-    for (let j=0; j<nodeList.length; j++){
-        nodeList[j].classList.toggle('node-visited');
-    }
+    window.location.reload();
+    // let nodeList = document.querySelectorAll('.isWall');
+    // for (let j=0; j<nodeList.length; j++){
+    //     nodeList[j].classList.toggle('isWall');
+    // }
+    // nodeList = document.querySelectorAll('.node-visited');
+    // for (let j=0; j<nodeList.length; j++){
+    //     nodeList[j].classList.toggle('node-visited');
+    // }
 }
