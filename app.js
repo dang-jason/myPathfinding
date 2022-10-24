@@ -2,10 +2,10 @@
 var isMousePressed = false;
 const TOTAL_ROWS = 20;
 const TOTAL_COLS = 50;
-const START_NODE_ROW = 10;
-const START_NODE_COL = 10;
-const FINISH_NODE_ROW = 10;
-const FINISH_NODE_COL = 40;
+var START_NODE_ROW = 10;
+var START_NODE_COL = 10;
+var FINISH_NODE_ROW = 10;
+var FINISH_NODE_COL = 40;
 
 const createNode = (col, row) => {
     const node = document.createElement('div');
@@ -17,12 +17,6 @@ const createNode = (col, row) => {
         : col === FINISH_NODE_COL && row === FINISH_NODE_ROW
         ? node.classList.add('node-finish')
         : ""
-
-    // if(node.classList.contains('node-start')){
-    //     node.addEventListener('mousedown'), () => {
-
-    //     }
-    // }
     if(!((node.classList.contains('node-start') || node.classList.contains('node-finish')))){
         node.addEventListener('mousedown', () => {
             isMousePressed = true;
@@ -39,13 +33,8 @@ const createNode = (col, row) => {
     }
     return node;
 }
-
 //setting up the grid
 const getInitialGrid = (() => {
-    const page = document.querySelector('body');
-    page.addEventListener('mouseup', () => {
-        isMousePressed = false;
-    })
     const grid = document.getElementById('grid');
     for (let row = 0; row < 20; row++) {
         const currentRow = document.createElement('div');
@@ -55,6 +44,15 @@ const getInitialGrid = (() => {
         }
         grid.appendChild(currentRow);
     }
+})();
+//setting up visual aspects of grid and page
+const setup = (() => {
+    console.log('setup');
+    const page = document.querySelector('body');
+    page.addEventListener('mouseup', () => {
+        isMousePressed = false;
+    });
+    //add change to start and finish nodes using input values! - how to combine input into one element?
 })();
 
 function solveBFS(){
@@ -109,7 +107,7 @@ function solveBFS(){
                     alert('Path to end cannot be found! I will restart this for you.')
                     reset();
                 }, (22-(2.5*i))*s);
-                break;
+                return;
             }
 
         }

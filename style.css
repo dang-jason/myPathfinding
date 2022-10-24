@@ -37,9 +37,10 @@ html{
 }
 
 .functions{
-    height: 20%;
+    height: 19.5%;
     width: 100%;
     text-align: center;
+    background-color: var(--page-color);
 }
 
 .functions > h1{
@@ -59,6 +60,38 @@ html{
 }
 
 .functions > button:hover{
+    background-color: var(--hover-color);
+}
+
+
+.startField{
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    top: 1vh;
+    left: 12vw;
+}
+
+.finishField{
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    top: 4vh;
+    left: 12.25vw;
+}
+
+#startPos, #finishPos{
+    text-align: center;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    width: 40px;
+    height: 25px;
+}
+
+#startPos:hover, #finishPos:hover{
     background-color: var(--hover-color);
 }
 
