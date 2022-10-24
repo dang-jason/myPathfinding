@@ -27,25 +27,25 @@ const createNode = (col, row) => {
         node.addEventListener('mousedown', () => {
             isMousePressed = true;
             node.classList.toggle('isWall');
-        })
+        });
         node.addEventListener('mouseenter', () =>{
             if(isMousePressed){
-                if(node.classList.contains('isWall')){
-                    node.classList.remove('isWall');
-                }
-                else
-                    node.classList.add('isWall');
+                node.classList.toggle('isWall');
             }
-        })
+        });
         node.addEventListener('mouseup', () =>{
             isMousePressed = false;
-        })
+        });
     }
     return node;
 }
 
 //setting up the grid
 const getInitialGrid = (() => {
+    const page = document.querySelector('body');
+    page.addEventListener('mouseup', () => {
+        isMousePressed = false;
+    })
     const grid = document.getElementById('grid');
     for (let row = 0; row < 20; row++) {
         const currentRow = document.createElement('div');
@@ -103,19 +103,17 @@ function solveBFS(){
 
 
     if(!solved){
-        if(s<500){
-            setTimeout( () => {
-                alert('Path to end cannot be found! I will restart this for you.')
-                reset();
-            }, 22*s);
-        } else{
-            setTimeout( () => {
-                alert('Path to end cannot be found! I will restart this for you.')
-                reset();
-            }, 10*s);
+        for(let i = 1; i <= 5; i++){
+            if (s < 200 * i){
+                setTimeout( () => {
+                    alert('Path to end cannot be found! I will restart this for you.')
+                    reset();
+                }, (22-(2.5*i))*s);
+                break;
+            }
+
         }
     }
-
 
     //put the previous node into an array to traceback the shortest path
     let previous = [`node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`];
@@ -132,19 +130,29 @@ function solveBFS(){
             pathNode.classList.add('node-path');
         }, 8*(s));
     }
-
-
-
 }
 
 function reset(){
-    window.location.reload();
-    // let nodeList = document.querySelectorAll('.isWall');
-    // for (let j=0; j<nodeList.length; j++){
-    //     nodeList[j].classList.toggle('isWall');
-    // }
-    // nodeList = document.querySelectorAll('.node-visited');
-    // for (let j=0; j<nodeList.length; j++){
-    //     nodeList[j].classList.toggle('node-visited');
-    // }
+    //clear timeoutIDs
+    const highestId = setTimeout(() => {
+        for (let i = highestId; i >= 0; i--) {
+            clearInterval(i);
+        }
+    }, 0);
+    //reset all walls
+    let nodeList = document.querySelectorAll('.isWall');
+    for (let j=0; j<nodeList.length; j++){
+        nodeList[j].classList.toggle('isWall');
+    }
+    //clear searched nodes
+    nodeList = document.querySelectorAll('.node-visited');
+    for (let j=0; j<nodeList.length; j++){
+        nodeList[j].classList.toggle('node-visited');
+    }
+    //clear shortest path
+    nodeList = document.querySelectorAll('.node-path');
+    for (let j=0; j<nodeList.length; j++){
+        nodeList[j].classList.toggle('node-path');
+    }
+
 }
