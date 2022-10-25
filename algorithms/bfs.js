@@ -1,5 +1,5 @@
 import {TOTAL_ROWS, TOTAL_COLS, START_NODE_ROW, START_NODE_COL, FINISH_NODE_ROW, FINISH_NODE_COL} from "../app.js";
-
+import {reset} from '../app.js';
 export function solveBFS(){
     document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.add('node-visited');
     let queue = [[START_NODE_ROW, START_NODE_COL]];

@@ -56,9 +56,56 @@ const setup = (() => {
     document.getElementById('solveBFS').addEventListener('click', () => {solveBFS()});
     document.getElementById('reset').addEventListener('click', () => {reset()});
     //add change to start and finish nodes using input values! - how to combine input into one element?
+    document.getElementById('startPos').addEventListener('click', () => {
+        let row = document.getElementById('startRow').value;
+        let col = document.getElementById('startCol').value;
+
+        if (row === "" && col === "") return;
+        else if (row === ""){
+            document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.toggle('node-start');
+            START_NODE_COL = col-1;
+            document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.toggle('node-start');
+        }
+        else if (col === ""){
+            document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.toggle('node-start');
+            START_NODE_ROW = row-1;
+            document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.toggle('node-start');
+        }
+        else {
+            document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.toggle('node-start');
+            START_NODE_ROW = row-1;
+            START_NODE_COL = col-1;
+            document.getElementById(`node-${START_NODE_ROW}-${START_NODE_COL}`).classList.toggle('node-start');
+        }
+    })
+
+    document.getElementById('finishPos').addEventListener('click', () => {
+        let row = document.getElementById('finishRow').value;
+        let col = document.getElementById('finishCol').value;
+
+        if (row === "" && col === "") return;
+        else if (row === ""){
+            document.getElementById(`node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`).classList.toggle('node-finish');
+            FINISH_NODE_COL = col-1;
+            document.getElementById(`node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`).classList.toggle('node-finish');
+        }
+        else if (col === ""){
+            document.getElementById(`node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`).classList.toggle('node-finish');
+            FINISH_NODE_ROW = row-1;
+            document.getElementById(`node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`).classList.toggle('node-finish');
+        }
+        else {
+            document.getElementById(`node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`).classList.toggle('node-finish');
+            FINISH_NODE_ROW = row-1;
+            FINISH_NODE_COL = col-1;
+            document.getElementById(`node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`).classList.toggle('node-finish');
+        }
+    })
 })();
 
-function reset(){
+export function reset(){
+    //bug in reset, might need to reset last path?
+
     //clear timeoutIDs
     const highestId = setTimeout(() => {
         for (let i = highestId; i >= 0; i--) {
