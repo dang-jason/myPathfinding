@@ -127,5 +127,9 @@ export function reset(){
     for (let j=0; j<nodeList.length; j++){
         nodeList[j].classList.toggle('node-path');
     }
-
+    nodeList = document.querySelectorAll('div[data-prevnode]:not([data-value="null"])');
+    console.log(nodeList);
+    for (let j=0; j<nodeList.length; j++){
+        nodeList[j].dataset.prevnode = null;
+    }
 }
