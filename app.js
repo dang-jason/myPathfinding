@@ -1,4 +1,5 @@
 import {solveBFS} from './algorithms/bfs.js';
+import {solveDFS} from './algorithms/dfs.js';
 var isMousePressed = false;
 const TOTAL_ROWS = 20;
 const TOTAL_COLS = 50;
@@ -54,6 +55,7 @@ const setup = (() => {
     });
 
     document.getElementById('solveBFS').addEventListener('click', () => {solveBFS()});
+    document.getElementById('solveDFS').addEventListener('click', () => {solveDFS()});
     document.getElementById('reset').addEventListener('click', () => {reset()});
     //add change to start and finish nodes using input values! - how to combine input into one element?
     document.getElementById('startPos').addEventListener('click', () => {

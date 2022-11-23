@@ -12,23 +12,26 @@
         <div class="pathfindingVisualizer" id="pathfindingVisualizer">
             <div class="functions">
                 <h1>Pathfinding Visualizer</h1>
-                <div class="bio"><p>By: Jason Dang<br>Date: 10/20/2022</p></div>
+                <div class="bio">
+                    <p>By: Jason Dang<br>Date: 10/20/2022</p>
+                    <div class="startField" id="startField">
+                        <label for="startRow">Starting Row:</label>
+                        <input class="button startPos" id="startRow" name="startRow" type="number" min="1" max="20" placeholder="1-20">
+                        <label for="startCol">Start Column:</label>
+                        <input class="button startPos" id="startCol" name="startCol" type="number" min="1" max="50" placeholder="1-50">
+                        <button class = "posButton" id="startPos" type="submit">Set!</button>
+                    </div>
+                    <div class="finishField" id="finishField">
+                        <label for="finishRow">Finish Row:</label>
+                        <input class="button finishPos" id="finishRow" name="finishRow" type="number" min="1" max="20" placeholder="1-20">
+                        <label for="finishCol">Finish Column:</label>
+                        <input class="button finishPos" id="finishCol" name="finishCol" type="number" min="1" max="50" placeholder="1-50">
+                        <button class="posButton" id="finishPos" type="submit">Set!</button>
+                    </div>
+                </div>
                 <button class="button" id="solveBFS">BFS!</button>
+                <button class="button" id="solveDFS">DFS!</button>
                 <button class="button" id="reset">Reset!</button>
-                <div class="startField" id="startField">
-                    <label for="startRow">Starting Row:</label>
-                    <input class="button startPos" id="startRow" name="startRow" type="number" min="1" max="20" placeholder="1-20">
-                    <label for="startCol">Start Column:</label>
-                    <input class="button startPos" id="startCol" name="startCol" type="number" min="1" max="50" placeholder="1-50">
-                    <button class = "posButton" id="startPos" type="submit">Set!</button>
-                </div>
-                <div class="finishField" id="finishField">
-                    <label for="finishRow">Finish Row:</label>
-                    <input class="button finishPos" id="finishRow" name="finishRow" type="number" min="1" max="20" placeholder="1-20">
-                    <label for="finishCol">Finish Column:</label>
-                    <input class="button finishPos" id="finishCol" name="finishCol" type="number" min="1" max="50" placeholder="1-50">
-                    <button class="posButton" id="finishPos" type="submit">Set!</button>
-                </div>
             </div>
             <div class="grid-container">
                 <div id="grid" class="grid"></div>
